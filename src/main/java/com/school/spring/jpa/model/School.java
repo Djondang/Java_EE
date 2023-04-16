@@ -1,27 +1,29 @@
 package com.school.spring.jpa.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class School {
 	
 	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
-	@Column(unique = true)
-	private String School_Name;
-	private int ClassNumber;
-	@Column(unique = true)
+	private String school_Name;
 	private String address;
+	private Integer class_Number;
 	
 	public School() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public School(String school_Name, int classNumber, String address) {
+	public School(String school_Name, String address, Integer class_Number) {
 		super();
-		School_Name = school_Name;
-		ClassNumber = classNumber;
+		this.school_Name = school_Name;
 		this.address = address;
+		this.class_Number = class_Number;
 	}
 
 	public Long getId() {
@@ -33,19 +35,11 @@ public class School {
 	}
 
 	public String getSchool_Name() {
-		return School_Name;
+		return school_Name;
 	}
 
 	public void setSchool_Name(String school_Name) {
-		School_Name = school_Name;
-	}
-
-	public int getClassNumber() {
-		return ClassNumber;
-	}
-
-	public void setClassNumber(int classNumber) {
-		ClassNumber = classNumber;
+		this.school_Name = school_Name;
 	}
 
 	public String getAddress() {
@@ -55,8 +49,17 @@ public class School {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+
+	public Integer getClass_Number() {
+		return class_Number;
+	}
+
+	public void setClass_Number(Integer class_Number) {
+		this.class_Number = class_Number;
+	}
+
 	
 	
 
+	
 }
