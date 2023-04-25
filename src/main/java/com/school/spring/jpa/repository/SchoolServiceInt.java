@@ -10,7 +10,9 @@ public interface SchoolServiceInt {
 	School AddSchool(School add);
     void DeleteAllSchool(School deleteAll);
     void DeleteSchool(Long id);
-    List<School> getAllSchool();
+    List<School> getAllSchool(Integer page, Integer size);
 	School UpdateSchool(School school);
+	List<School> findBySchool_Name(String school_Name);
+	//List<School> findBySchool_Name(String school_Name, Integer page, Integer size);
 
 }

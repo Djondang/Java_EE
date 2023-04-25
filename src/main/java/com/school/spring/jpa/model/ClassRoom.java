@@ -1,10 +1,19 @@
 package com.school.spring.jpa.model;
 
+//import jakarta.persistence.CascadeType;
+
+//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+//import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
-//@Entity
+@Entity
 public class ClassRoom {
 	
 	@Id
@@ -13,18 +22,30 @@ public class ClassRoom {
 	private String className;
 	private String description;
 	
+	//@ManyToOne(cascade = CascadeType.ALL)
+	//@JoinColumn(name = "school_id")
+	//@JsonIgnoreProperties("classRoom")
+	@ManyToOne  
+    @JoinTable( name = "T_School_Class_Associations",
+                joinColumns = @JoinColumn( name = "class_id" ),
+                inverseJoinColumns = @JoinColumn( name = "school_id" ) )
+	private School school;
+	
 	
 	public ClassRoom() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	
-	public ClassRoom(String className, String description) {
+	public ClassRoom(String className, String description, School school) {
+		super();
 		this.className = className;
 		this.description = description;
+		this.school = school;
 	}
-
 	
+	// Setter and getter
+
 	public Long getId() {
 		return id;
 	}
@@ -42,6 +63,14 @@ public class ClassRoom {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+
+	public School getSchool() {
+		return school;
+	}
+	public void setSchool(School school) {
+		this.school = school;
 	}
 	
 	
